@@ -1,0 +1,15 @@
+services:
+  mariadb-server:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./pet-db:/pet_db
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Lägg till den här volymen
+    command: --init-file /docker-entrypoint-initdb.d/init.sql  # Kör init-skriptet vid start
+
+  mariadb-client:
+    image: mariadb:11
+    command: sleep infinity

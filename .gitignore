@@ -1,0 +1,3 @@
+# Exclude environment variable files
+.env
+credentials.env
